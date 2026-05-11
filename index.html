@@ -115,6 +115,7 @@
         <div class="nav-bar" id="main-nav">
             <button onclick="showView('home')">Exam Menu</button>
             <button onclick="showView('guide')">Study Guide</button>
+            <button onclick="showView('summary')">Topic Summaries</button>
         </div>
 
         <!-- VISTA: HOME -->
@@ -181,6 +182,34 @@
                 </div>
             </div>
         </div>
+
+        <!-- VISTA: RESÚMENES DE TÓPICOS -->
+<div id="view-summary" class="hidden">
+    <h3 style="font-size: 0.8rem; color: #555; text-transform: uppercase; margin-bottom:10px;">Select Topic Summary:</h3>
+    <div class="grid-topics" id="summary-menu" style="margin-bottom: 20px;">
+        <button class="btn-topic" onclick="showSummary('s1')">1. Yijing</button>
+        <button class="btn-topic" onclick="showSummary('s2')">2. Taoism</button>
+        <button class="btn-topic" onclick="showSummary('s3')">3. Confucianism</button>
+        <button class="btn-topic" onclick="showSummary('s4')">4. Legalism</button>
+        <button class="btn-topic" onclick="showSummary('s5')">5. Mohism</button>
+        <button class="btn-topic" onclick="showSummary('s6')">6. Nominalism</button>
+        <button class="btn-topic" onclick="showSummary('s7')">7. Buddhism</button>
+        <button class="btn-topic" onclick="showSummary('s8')">8. Neo-Confucianism</button>
+        <button class="btn-topic" onclick="showSummary('s9')">9. Military</button>
+    </div>
+
+    <div id="summary-display" class="ref-card" style="height: 55vh; overflow-y: auto; color: #bbb; line-height: 1.6; border-color: var(--red);">
+        <div id="s1" class="summary-text"><strong>Yijing (The Book of Changes):</strong> The Yijing is considered the origin of traditional Chinese philosophy, dating back 5,000 years. Its essence lies in the dynamic interaction between Yin (negative/passive) and Yang (positive/active), represented by the Taiji or Double-Fish symbol. Key representatives include Fu Xi (the original inventor), King Wen of Zhou (renovator), and Confucius (commentator). The book describes a "one-two-three" pattern of existence where unity leads to duality and then to infinite creation. Its repercussion is foundational, influencing the Chinese lunar calendar, traditional medicine, and architecture. Modern science also echoes its concepts; the slides link its notion of non-duality to quantum entanglement and the hologram hypothesis, suggesting that the 3D world may be a projection of 2D information.</div>
+        <div id="s2" class="summary-text hidden"><strong>Taoism (Philosophical and Religious):</strong> Taoism centers on living in harmony with the Dao (the Way), the ultimate principle of the universe. Philosophical Taoism (Daojia) emphasizes Ziran (naturalness), Wuwei (non-action), and humility, while Religious Taoism (Daojiao) involves organized rituals and beliefs. Its primary representatives are Laozi, author of the Daodejing, and Zhuangzi, who used allegories like the "Butterfly Dream" to explore spiritual freedom. The philosophy teaches that "softness overcomes hardness" and favors non-competition. Its impact is seen in Chinese arts, literature, and health practices like Qigong. Zhuangzi’s work, in particular, transformed Laozi’s outlook into a quest for absolute spiritual freedom and unity with nature, providing "artistic nutrients" for generations of Chinese writers and thinkers.</div>
+        <div id="s3" class="summary-text hidden"><strong>Confucianism:</strong> Founded by Confucius and further developed by Mencio, Confucianism is a humanistic philosophy focused on social harmony, family ethics, and private virtue. Its core value is Ren (benevolence/humanity), supported by Li (propriety) and Xiao (filial piety). Unlike other schools, it views human nature as fundamentally good and teachable. Its repercussion was the establishment of the Imperial Examination system, which created a meritocracy that lasted for 2,000 years. Its influence is global; the slides highlight that Confucius is honored as one of the three great "Lawgivers" on the East Pediment of the U.S. Supreme Court. Today, the Confucian work ethic is credited with the economic rise of East Asia, emphasizing self-cultivation and communal responsibility.</div>
+        <div id="s4" class="summary-text hidden"><strong>Legalism (Fajia):</strong> Legalism represents a realist approach to statecraft, emphasizing "rule by law" to achieve order and stability. Unlike Confucianism, Legalists hold a selfish view of human nature, believing people are naturally inclined toward self-interest rather than virtue. Key representatives include Guan Zhong, Shang Yang, and Han Fei. They advocated for a strong central government, a professional bureaucracy, and a strict system of rewards and punishments (Fa). Historically, Legalist thought was the driving force that allowed the Qin Dynasty to unify the warring states into the first Chinese empire. Its repercussion remains significant today, as it provided the template for Chinese administration and legal practice that persisted through subsequent dynasties into the contemporary era.</div>
+        <div id="s5" class="summary-text hidden"><strong>Mohism (Mòjiā):</strong> Founded by Mozi, a former engineer, Mohism advocated for a unified, utilitarian social order based on Jian Ai (universal love) and Fei Gong (non-aggression). Mozi argued against the expensive rituals of Confucianism, promoting frugality and a meritocracy where the worthy receive power regardless of birth. Philosophically, he pioneered the study of logic and valid inference. The slides emphasize Mohism’s incredible scientific impact; his writings on the principles of the lever and the straight-line propagation of light preceded Western discoveries by centuries. In 2016, China launched the world’s first quantum communications satellite, named "Mozi," in homage to his early scientific insights and his writings on optics and the nature of reality.</div>
+        <div id="s6" class="summary-text hidden"><strong>Nominalism (School of Names):</strong> The School of Names, or the "Logicians," focused on the relationship between language (names) and reality (actuality). Rising from Mohism, they explored existence, relativity, and space-time. Hui Shi is famous for his ten paradoxes on relativity (e.g., "the sun at noon is the sun setting"), while Gongsun Long is best known for the "White Horse Dialogue," arguing that a "white horse" is not identical to the general category of "horse." Their repercussion for philosophy was the development of advanced logical discourse and semantics. These thinkers challenged common sense and sensory perception, much like the Greek philosopher Zeno of Elea, providing a unique analytical branch within traditional Chinese thought that remains a subject of intense study.</div>
+        <div id="s7" class="summary-text hidden"><strong>Buddhism in China:</strong> Buddhism was introduced from India and evolved into distinct Chinese schools, notably Zen (Chan) and Pure Land. Zen, represented by Bodhidharma and Huineng, emphasizes meditation (Dhyana) and sudden enlightenment, often using "counter-logic" or silence to reach truth. Pure Land Buddhism focuses on faith in Amitabha Buddha and the existence of a Western Paradise. Key concepts include karma, reincarnation, and the "emptiness" of the physical world as taught in the Heart Sutra. Its repercussion is visible in massive cultural monuments like the Leshan Giant Buddha and the Dunhuang caves. Buddhism’s integration with Chinese culture promoted the idea of equality in "Buddha-nature" and deeply influenced literature, art, and the everyday spirituality of the Chinese people.</div>
+        <div id="s8" class="summary-text hidden"><strong>Neo-Confucianism:</strong> Neo-Confucianism emerged during the Song and Ming dynasties as a revival of Confucianism that integrated the metaphysical depths of Taoism and Buddhism. It is divided into the Cheng-Zhu School (Rationalism), led by Zhu Xi, and the Lu-Wang School (School of Mind), represented by Lu Jiuyuan and Wang Yangming. Zhu Xi emphasized the "investigation of things" and the study of the "Four Books," which became the basis for civil service exams until 1905. Wang Yangming focused on the "Unity of Knowing and Acting." This movement's repercussion was immense across Asia, becoming the state orthodoxy in China, Korea, and Japan. It provided an ethical-political framework that combined social governance with rigorous internal self-cultivation and spiritual stillness.</div>
+        <div id="s9" class="summary-text hidden"><strong>Military Strategem:</strong> This topic is centered on Sunzi (Sun Tzu) and his seminal work, The Art of War. Composed of 13 chapters, it is one of the oldest and most successful treatises on strategy. Its essence lies in the use of deception, the importance of psychological warfare, and the avoidance of direct conflict whenever possible ("breaking the enemy's resistance without fighting"). Sunzi incorporated Taoist ideas of inaction and Legalist systems of discipline. Its repercussion has transcended the military sphere; today, his principles are applied worldwide to business, politics, and managerial strategies. The slides highlight that Sunzi viewed war as a high-cost endeavor to be avoided through superior intelligence, emphasizing that knowing both oneself and the enemy ensures victory in any "battle."</div>
+    </div>
+</div>
 
         <!-- VISTA: RESULTADOS -->
         <div id="view-results" class="hidden">
@@ -302,10 +331,21 @@
         }
 
         function showView(v) {
-            ['home', 'quiz', 'guide', 'results'].forEach(id => document.getElementById('view-' + id).classList.add('hidden'));
+            ['home', 'quiz', 'guide', 'summary', 'results'].forEach(id => document.getElementById('view-' + id).classList.add('hidden'));
             document.getElementById('view-' + v).classList.remove('hidden');
         }
         function cancelQuiz() { if(confirm("End session?")) showView('home'); }
+
+        function showSummary(id) {
+    // Ocultar todos los textos de resumen
+    document.querySelectorAll('.summary-text').forEach(el => el.classList.add('hidden'));
+    // Mostrar solo el seleccionado
+    document.getElementById(id).classList.remove('hidden');
+    
+    // Opcional: resaltar el botón activo
+    document.querySelectorAll('#summary-menu .btn-topic').forEach(btn => btn.style.borderColor = '#444');
+    event.target.style.borderColor = 'var(--gold)';
+}
     </script>
 </body>
 </html>
