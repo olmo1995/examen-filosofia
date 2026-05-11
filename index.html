@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chinese Philosophy Exam Trainer 2026</title>
+    <style>
+        :root { --red: #b01b1b; --gold: #d4af37; --paper: #f9f7f1; --dark: #2c3e50; --correct: #27ae60; --wrong: #c0392b; }
+        body { font-family: 'Palatino', serif; background-color: #d5dbdb; margin: 0; padding: 10px; display: flex; justify-content: center; }
+        .container { width: 100%; max-width: 900px; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); border-top: 10px solid var(--red); min-height: 95vh; }
+        h1 { color: var(--red); text-align: center; text-transform: uppercase; margin: 0; }
+        .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 20px; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .nav-bar { display: flex; gap: 10px; margin-bottom: 20px; }
+        .nav-bar button { flex: 1; background: var(--dark); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        .nav-bar button:hover { background: var(--gold); }
+        .hidden { display: none; }
+        .config-box { background: var(--paper); padding: 15px; border-radius: 8px; border: 1px solid #ddd; text-align: center; margin-bottom: 20px; }
+        .grid-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+        .btn-topic { background: white; border: 2px solid var(--red); color: var(--red); padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .btn-topic:hover { background: var(--red); color: white; }
+        .btn-main { background: var(--red); color: white; width: 100%; padding: 15px; font-size: 1.1rem; border: none; border-radius: 6px; cursor: pointer; }
+        .btn-cancel { background: #7f8c8d; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; }
+        .progress-fill { background: var(--gold); height: 10px; width: 0%; transition: 0.4s; border-radius: 5px; }
+        .question-box { font-size: 1.25rem; font-weight: bold; margin: 20px 0; line-height: 1.4; color: var(--dark); }
+        .opt-btn { width: 100%; background: white; border: 2px solid #ddd; text-align: left; padding: 15px; font-size: 1rem; border-radius: 8px; margin-bottom: 10px; cursor: pointer; }
+        .opt-btn:hover:not(:disabled) { border-color: var(--red); background: var(--paper); }
+        .correct { background-color: #d4efdf !important; border-color: var(--correct) !important; color: #145a32; font-weight: bold; }
+        .wrong { background-color: #fadbd8 !important; border-color: var(--wrong) !important; color: #7b241c; }
+        .ref-card { margin-top: 20px; padding: 15px; background: #fff9e6; border-left: 6px solid var(--gold); border-radius: 4px; font-size: 0.9rem; }
+        .guide-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .guide-table th, .guide-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .guide-table th { background: var(--red); color: white; position: sticky; top: 0; }
+        .score-big { font-size: 4rem; font-weight: bold; color: var(--red); text-align: center; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chinese Philosophy Trainer</h1>
+        <p class="subtitle">EXAM PREP COURSE 2026</p>
+
+        <div class="nav-bar" id="main-nav">
+            <button onclick="showView('home')">Exam Menu</button>
+            <button onclick="showView('guide')">Study Guide (Full List)</button>
+        </div>
+
+        <div id="view-home">
+            <div class="config-box">
+                <h3>Random General Exam</h3>
+                <input type="number" id="q-limit" value="20" min="1" max="150" style="padding: 10px; width: 60px; text-align: center;">
+                <button class="btn-main" onclick="startQuiz('all')" style="margin-top:10px;">START RANDOM EXAM</button>
+            </div>
+            <h3>Study by Topic</h3>
+            <div class="grid-topics" id="topics-menu"></div>
+        </div>
+
+        <div id="view-quiz" class="hidden">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span id="quiz-title" style="color:var(--red); font-weight:bold;"></span>
+                <button class="btn-cancel" onclick="cancelQuiz()">Cancel</button>
+            </div>
+            <div style="background:#eee; height:10px; border-radius:5px; margin:15px 0;">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <div id="q-counter" style="font-size:0.9rem; color:#666;"></div>
+            <div class="question-box" id="q-text"></div>
+            <div id="options-box"></div>
+            <div id="feedback-box" class="hidden">
+                <div class="ref-card">
+                    <strong style="color:var(--gold)">REFERENCE:</strong>
+                    <div id="ref-content"></div>
+                </div>
+                <button class="btn-main" style="background:var(--dark); margin-top:15px;" onclick="nextQuestion()">Next Question →</button>
+            </div>
+        </div>
+
+        <div id="view-guide" class="hidden">
+            <div style="height:70vh; overflow-y:auto;">
+                <table class="guide-table">
+                    <thead><tr><th>#</th><th>Topic</th><th>Question</th><th>Answer</th><th>PDF Reference</th></tr></thead>
+                    <tbody id="guide-body"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="view-results" class="hidden">
+            <h2 style="text-align:center;">Final Score</h2>
+            <div id="res-score" class="score-big">0%</div>
+            <p id="res-stats" style="text-align:center; font-size:1.2rem;"></p>
+            <button class="btn-main" onclick="showView('home')">Finish</button>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script>
+        let currentQuiz = [], currentIdx = 0, score = 0;
+
+        window.onload = () => {
+            const topics = [...new Set(questionsData.map(q => q.topic))];
+            const menu = document.getElementById('topics-menu');
+            topics.forEach(t => {
+                const b = document.createElement('button');
+                b.className = 'btn-topic'; b.innerText = t;
+                b.onclick = () => startQuiz(t);
+                menu.appendChild(b);
+            });
+            renderGuide();
+        };
+
+        function startQuiz(mode) {
+            if (mode === 'all') {
+                let limit = parseInt(document.getElementById('q-limit').value);
+                currentQuiz = [...questionsData].sort(() => 0.5 - Math.random()).slice(0, limit);
+                document.getElementById('quiz-title').innerText = "GENERAL EXAM";
+            } else {
+                currentQuiz = questionsData.filter(q => q.topic === mode);
+                document.getElementById('quiz-title').innerText = mode.toUpperCase();
+            }
+            currentIdx = 0; score = 0;
+            showView('quiz'); showQuestion();
+        }
+
+        function showQuestion() {
+            const q = currentQuiz[currentIdx];
+            document.getElementById('q-counter').innerText = `Question ${currentIdx + 1} of ${currentQuiz.length} (ID: ${q.id})`;
+            document.getElementById('q-text').innerText = q.q;
+            document.getElementById('feedback-box').classList.add('hidden');
+            const box = document.getElementById('options-box'); box.innerHTML = '';
+            
+            const options = q.type === "TF" ? ["True", "False"] : q.o;
+            options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'opt-btn'; btn.innerText = opt;
+                btn.onclick = () => checkAnswer(opt, btn);
+                box.appendChild(btn);
+            });
+            document.getElementById('progress-fill').style.width = `${(currentIdx / currentQuiz.length) * 100}%`;
+        }
+
+        function checkAnswer(val, btn) {
+            const q = currentQuiz[currentIdx];
+            const btns = document.querySelectorAll('.opt-btn');
+            btns.forEach(b => b.disabled = true);
+            if (val === q.a) { btn.classList.add('correct'); score++; }
+            else { 
+                btn.classList.add('wrong'); 
+                btns.forEach(b => { if(b.innerText === q.a) b.classList.add('correct'); });
+            }
+            document.getElementById('ref-content').innerHTML = `<strong>Correct Answer:</strong> ${q.a}<br><strong>Document:</strong> ${q.doc}<br><strong>Page:</strong> ${q.pg}`;
+            document.getElementById('feedback-box').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentIdx++;
+            if (currentIdx < currentQuiz.length) showQuestion();
+            else {
+                showView('results');
+                const pct = Math.round((score / currentQuiz.length) * 100);
+                document.getElementById('res-score').innerText = pct + "%";
+                document.getElementById('res-stats').innerText = `Correct: ${score} / ${currentQuiz.length}`;
+            }
+        }
+
+        function renderGuide() {
+            const body = document.getElementById('guide-body');
+            questionsData.forEach(q => {
+                body.innerHTML += `<tr><td>${q.id}</td><td>${q.topic}</td><td>${q.q}</td><td style="color:green; font-weight:bold;">${q.a}</td><td>${q.doc} (P. ${q.pg})</td></tr>`;
+            });
+        }
+
+        function showView(v) {
+            ['home', 'quiz', 'guide', 'results'].forEach(id => document.getElementById('view-' + id).classList.add('hidden'));
+            document.getElementById('view-' + v).classList.remove('hidden');
+        }
+        function cancelQuiz() { if(confirm("Cancel current exam?")) showView('home'); }
+    </script>
+</body>
+</html>
