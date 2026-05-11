@@ -2,90 +2,192 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Chinese Philosophy Exam Trainer 2026</title>
+    <title>Philosophy Trainer - Subtle Mode</title>
     <style>
-        :root { --red: #b01b1b; --gold: #d4af37; --paper: #f9f7f1; --dark: #2c3e50; --correct: #27ae60; --wrong: #c0392b; }
-        body { font-family: 'Palatino', serif; background-color: #d5dbdb; margin: 0; padding: 10px; display: flex; justify-content: center; }
-        .container { width: 100%; max-width: 900px; background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); border-top: 10px solid var(--red); min-height: 95vh; }
-        h1 { color: var(--red); text-align: center; text-transform: uppercase; margin: 0; }
-        .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 20px; font-weight: bold; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .nav-bar { display: flex; gap: 10px; margin-bottom: 20px; }
-        .nav-bar button { flex: 1; background: var(--dark); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; font-weight: bold; }
-        .nav-bar button:hover { background: var(--gold); }
+        :root { 
+            --red: #5e1111; 
+            --gold: #7a6a35; 
+            --paper: #1e1e1e; 
+            --bg: #121212;    
+            --text: #9e9e9e;  
+            --text-bright: #c0c0c0; 
+            --dark: #2c3e50; 
+            --correct: #1b4d2a; 
+            --wrong: #541d1d; 
+            --border: #333333;
+        }
+
+        body { 
+            font-family: 'Georgia', serif; 
+            background-color: var(--bg); 
+            color: var(--text);
+            margin: 0; 
+            padding: 10px; 
+            display: flex; 
+            justify-content: center; 
+        }
+
+        .container { 
+            width: 100%; 
+            max-width: 850px; 
+            background: #181818; 
+            padding: 25px; 
+            border-radius: 4px; 
+            box-shadow: 0 0 15px rgba(0,0,0,0.5); 
+            border: 1px solid var(--border);
+            min-height: 95vh; 
+        }
+
+        h1 { color: var(--red); text-align: center; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: #555; margin-bottom: 20px; font-size: 0.8rem; text-transform: uppercase; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+
+        .nav-bar { display: flex; gap: 8px; margin-bottom: 20px; }
+        .nav-bar button { 
+            flex: 1; background: #252525; color: #888; border: 1px solid var(--border); 
+            padding: 8px; cursor: pointer; font-size: 0.85rem; border-radius: 3px; 
+        }
+        .nav-bar button:hover { background: #333; color: var(--text-bright); }
+
         .hidden { display: none; }
-        .config-box { background: var(--paper); padding: 15px; border-radius: 8px; border: 1px solid #ddd; text-align: center; margin-bottom: 20px; }
-        .grid-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
-        .btn-topic { background: white; border: 2px solid var(--red); color: var(--red); padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; }
-        .btn-topic:hover { background: var(--red); color: white; }
-        .btn-main { background: var(--red); color: white; width: 100%; padding: 15px; font-size: 1.1rem; border: none; border-radius: 6px; cursor: pointer; }
-        .btn-cancel { background: #7f8c8d; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; }
-        .progress-fill { background: var(--gold); height: 10px; width: 0%; transition: 0.4s; border-radius: 5px; }
-        .question-box { font-size: 1.25rem; font-weight: bold; margin: 20px 0; line-height: 1.4; color: var(--dark); }
-        .opt-btn { width: 100%; background: white; border: 2px solid #ddd; text-align: left; padding: 15px; font-size: 1rem; border-radius: 8px; margin-bottom: 10px; cursor: pointer; }
-        .opt-btn:hover:not(:disabled) { border-color: var(--red); background: var(--paper); }
-        .correct { background-color: #d4efdf !important; border-color: var(--correct) !important; color: #145a32; font-weight: bold; }
-        .wrong { background-color: #fadbd8 !important; border-color: var(--wrong) !important; color: #7b241c; }
-        .ref-card { margin-top: 20px; padding: 15px; background: #fff9e6; border-left: 6px solid var(--gold); border-radius: 4px; font-size: 0.9rem; }
-        .guide-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
-        .guide-table th, .guide-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-        .guide-table th { background: var(--red); color: white; position: sticky; top: 0; }
-        .score-big { font-size: 4rem; font-weight: bold; color: var(--red); text-align: center; margin: 20px 0; }
+
+        .config-box { 
+            background: #1e1e1e; padding: 20px; border-radius: 4px; 
+            border: 1px solid var(--border); text-align: center; margin-bottom: 25px; 
+        }
+
+        select#q-limit {
+            background: #111; color: var(--gold); border: 1px solid var(--border);
+            padding: 8px 12px; border-radius: 3px; font-size: 1rem; outline: none;
+        }
+
+        .grid-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 6px; }
+        .btn-topic { 
+            background: transparent; border: 1px solid #444; color: #777; 
+            padding: 10px; border-radius: 3px; font-size: 0.85rem; cursor: pointer; 
+        }
+        .btn-topic:hover { border-color: var(--gold); color: var(--text-bright); }
+        .btn-topic.active { background: var(--gold); color: white; border-color: var(--gold); }
+
+        .btn-main { 
+            background: var(--red); color: #ccc; width: 100%; padding: 12px; 
+            font-size: 1rem; border: none; border-radius: 3px; cursor: pointer; opacity: 0.8;
+        }
+        .btn-main:hover { opacity: 1; color: white; }
+
+        .btn-cancel { background: transparent; color: #555; border: 1px dotted #444; padding: 5px 10px; cursor: pointer; font-size: 0.75rem; }
+
+        .progress-fill { background: var(--gold); height: 3px; width: 0%; transition: 0.4s; }
+
+        .question-box { 
+            font-size: 1.15rem; margin: 30px 0; line-height: 1.5; color: var(--text-bright); 
+            border-left: 3px solid var(--red); padding-left: 15px;
+        }
+
+        .opt-btn { 
+            width: 100%; background: #1a1a1a; border: 1px solid var(--border); 
+            text-align: left; padding: 12px 15px; font-size: 0.95rem; color: #888;
+            border-radius: 3px; margin-bottom: 8px; cursor: pointer;
+        }
+        .opt-btn:hover:not(:disabled) { border-color: #555; color: var(--text-bright); background: #222; }
+
+        .correct { background-color: var(--correct) !important; border-color: #27ae60 !important; color: #fff !important; }
+        .wrong { background-color: var(--wrong) !important; border-color: #c0392b !important; color: #fff !important; }
+
+        .ref-card { 
+            margin-top: 20px; padding: 15px; background: #151515; 
+            border-left: 3px solid var(--gold); font-size: 0.85rem; color: #777;
+        }
+
+        .guide-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; color: #999; margin-top: 10px; }
+        .guide-table th, .guide-table td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+        .guide-table th { background: #222; color: var(--gold); font-size: 0.65rem; text-transform: uppercase; }
+        .guide-table tr:hover { background: #1a1a1a; }
+        .guide-type { font-size: 0.6rem; padding: 2px 4px; border-radius: 2px; background: #333; color: #888; }
+
+        .score-big { font-size: 3rem; color: var(--gold); text-align: center; margin: 20px 0; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Chinese Philosophy Trainer</h1>
-        <p class="subtitle">EXAM PREP COURSE 2026</p>
+        <h1>Philosophy Trainer</h1>
+        <p class="subtitle">Subtle Study Mode</p>
 
         <div class="nav-bar" id="main-nav">
             <button onclick="showView('home')">Exam Menu</button>
-            <button onclick="showView('guide')">Study Guide (Full List)</button>
+            <button onclick="showView('guide')">Study Guide</button>
         </div>
 
+        <!-- VISTA: HOME -->
         <div id="view-home">
             <div class="config-box">
-                <h3>Random General Exam</h3>
-                <input type="number" id="q-limit" value="20" min="1" max="150" style="padding: 10px; width: 60px; text-align: center;">
-                <button class="btn-main" onclick="startQuiz('all')" style="margin-top:10px;">START RANDOM EXAM</button>
+                <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">Session size:</p>
+                <select id="q-limit">
+                    <option value="10">10 Questions</option>
+                    <option value="20" selected>20 Questions</option>
+                    <option value="30">30 Questions</option>
+                    <option value="50">50 Questions</option>
+                    <option value="100">100 Questions</option>
+                    <option value="150">150 Questions (All)</option>
+                </select>
+                <button class="btn-main" onclick="startQuiz('all')" style="margin-top:20px; background: #252525; border: 1px solid #444;">START RANDOM SESSION</button>
             </div>
-            <h3>Study by Topic</h3>
-            <div class="grid-topics" id="topics-menu"></div>
+            <h3 style="font-size: 0.8rem; color: #444; text-transform: uppercase; margin-bottom:12px;">Topics</h3>
+            <div class="grid-topics" id="main-topics-menu"></div>
         </div>
 
+        <!-- VISTA: QUIZ -->
         <div id="view-quiz" class="hidden">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span id="quiz-title" style="color:var(--red); font-weight:bold;"></span>
-                <button class="btn-cancel" onclick="cancelQuiz()">Cancel</button>
+                <span id="quiz-title" style="color:var(--gold); font-size: 0.75rem; font-weight:bold;"></span>
+                <button class="btn-cancel" onclick="cancelQuiz()">Close</button>
             </div>
-            <div style="background:#eee; height:10px; border-radius:5px; margin:15px 0;">
+            <div style="background:#222; height:3px; margin:15px 0;">
                 <div id="progress-fill" class="progress-fill"></div>
             </div>
-            <div id="q-counter" style="font-size:0.9rem; color:#666;"></div>
+            <!-- Aquí se muestra el ID original durante el examen -->
+            <div id="q-counter" style="font-size:0.7rem; color:#444; margin-bottom: 5px;"></div>
+            
             <div class="question-box" id="q-text"></div>
             <div id="options-box"></div>
+            
             <div id="feedback-box" class="hidden">
                 <div class="ref-card">
-                    <strong style="color:var(--gold)">REFERENCE:</strong>
-                    <div id="ref-content"></div>
+                    <strong style="color:var(--gold); font-size: 0.7rem;">REFERENCE CHECK:</strong>
+                    <div id="ref-content" style="margin-top:5px; line-height:1.4;"></div>
                 </div>
-                <button class="btn-main" style="background:var(--dark); margin-top:15px;" onclick="nextQuestion()">Next Question →</button>
+                <button class="btn-main" style="background:var(--red); margin-top:15px; color: white;" onclick="nextQuestion()">Continue →</button>
             </div>
         </div>
 
+        <!-- VISTA: GUIA DE ESTUDIO (TABS) -->
         <div id="view-guide" class="hidden">
-            <div style="height:70vh; overflow-y:auto;">
-                <table class="guide-table">
-                    <thead><tr><th>#</th><th>Topic</th><th>Question</th><th>Answer</th><th>PDF Reference</th></tr></thead>
-                    <tbody id="guide-body"></tbody>
-                </table>
+            <h3 style="font-size: 0.8rem; color: #555; text-transform: uppercase; margin-bottom:10px;">Select Topic:</h3>
+            <div class="grid-topics" id="guide-topics-menu" style="margin-bottom: 20px;"></div>
+            
+            <div id="guide-content-area" class="hidden">
+                <div style="height:65vh; overflow-y:auto; border: 1px solid var(--border); border-radius: 4px;">
+                    <table class="guide-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">Orig. ID</th>
+                                <th style="width: 40px;">Type</th>
+                                <th>Question</th>
+                                <th>Correct Answer</th>
+                                <th style="width: 60px;">Page</th>
+                            </tr>
+                        </thead>
+                        <tbody id="guide-body"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
 
+        <!-- VISTA: RESULTADOS -->
         <div id="view-results" class="hidden">
-            <h2 style="text-align:center;">Final Score</h2>
+            <h2 style="text-align:center; font-size: 1rem;">Session Complete</h2>
             <div id="res-score" class="score-big">0%</div>
-            <p id="res-stats" style="text-align:center; font-size:1.2rem;"></p>
-            <button class="btn-main" onclick="showView('home')">Finish</button>
+            <p id="res-stats" style="text-align:center; font-size:0.9rem; color: #555;"></p>
+            <button class="btn-main" onclick="showView('home')">Return Menu</button>
         </div>
     </div>
 
@@ -94,16 +196,50 @@
         let currentQuiz = [], currentIdx = 0, score = 0;
 
         window.onload = () => {
-            const topics = [...new Set(questionsData.map(q => q.topic))];
-            const menu = document.getElementById('topics-menu');
+            // Obtener temas únicos y ordenarlos
+            const topics = [...new Set(questionsData.map(q => q.topic))].sort();
+            
+            const mainMenu = document.getElementById('main-topics-menu');
+            const guideMenu = document.getElementById('guide-topics-menu');
+
             topics.forEach(t => {
-                const b = document.createElement('button');
-                b.className = 'btn-topic'; b.innerText = t;
-                b.onclick = () => startQuiz(t);
-                menu.appendChild(b);
+                // Botones del menú principal
+                const b1 = document.createElement('button');
+                b1.className = 'btn-topic'; b1.innerText = t;
+                b1.onclick = () => startQuiz(t);
+                mainMenu.appendChild(b1);
+
+                // Botones de las pestañas de la guía
+                const b2 = document.createElement('button');
+                b2.className = 'btn-topic btn-guide-tab'; b2.innerText = t;
+                b2.onclick = () => filterGuide(t, b2);
+                guideMenu.appendChild(b2);
             });
-            renderGuide();
         };
+
+        function filterGuide(topic, btnElement) {
+            document.querySelectorAll('.btn-guide-tab').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            const body = document.getElementById('guide-body');
+            body.innerHTML = '';
+            
+            const filtered = questionsData.filter(q => q.topic === topic);
+            
+            filtered.forEach(q => {
+                const typeLabel = q.type === 'TF' ? 'T/F' : 'MC';
+                body.innerHTML += `
+                    <tr>
+                        <td style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">${q.id}</td>
+                        <td><span class="guide-type">${typeLabel}</span></td>
+                        <td style="font-size: 0.8rem;">${q.q}</td>
+                        <td style="color:#27ae60; font-weight:bold; font-size: 0.8rem;">${q.a}</td>
+                        <td style="font-size:0.7rem; color:#555;">P. ${q.pg}</td>
+                    </tr>`;
+            });
+
+            document.getElementById('guide-content-area').classList.remove('hidden');
+        }
 
         function startQuiz(mode) {
             if (mode === 'all') {
@@ -120,19 +256,20 @@
 
         function showQuestion() {
             const q = currentQuiz[currentIdx];
-            document.getElementById('q-counter').innerText = `Question ${currentIdx + 1} of ${currentQuiz.length} (ID: ${q.id})`;
+            // ID mostrado sutilmente en el examen
+            document.getElementById('q-counter').innerText = `Question ${currentIdx + 1}/${currentQuiz.length} (Ref ID: ${q.id})`;
             document.getElementById('q-text').innerText = q.q;
             document.getElementById('feedback-box').classList.add('hidden');
             const box = document.getElementById('options-box'); box.innerHTML = '';
             
             const options = q.type === "TF" ? ["True", "False"] : q.o;
-            options.forEach((opt, idx) => {
+            options.forEach((opt) => {
                 const btn = document.createElement('button');
                 btn.className = 'opt-btn'; btn.innerText = opt;
                 btn.onclick = () => checkAnswer(opt, btn);
                 box.appendChild(btn);
             });
-            document.getElementById('progress-fill').style.width = `${(currentIdx / currentQuiz.length) * 100}%`;
+            document.getElementById('progress-fill').style.width = `${((currentIdx + 1) / currentQuiz.length) * 100}%`;
         }
 
         function checkAnswer(val, btn) {
@@ -144,7 +281,12 @@
                 btn.classList.add('wrong'); 
                 btns.forEach(b => { if(b.innerText === q.a) b.classList.add('correct'); });
             }
-            document.getElementById('ref-content').innerHTML = `<strong>Correct Answer:</strong> ${q.a}<br><strong>Document:</strong> ${q.doc}<br><strong>Page:</strong> ${q.pg}`;
+            // Información detallada de auditoría en el feedback
+            document.getElementById('ref-content').innerHTML = `
+                <strong>Answer:</strong> ${q.a} <br> 
+                <strong>Original ID:</strong> ${q.id} <br>
+                <strong>Source:</strong> ${q.doc} <br>
+                <strong>Page:</strong> ${q.pg}`;
             document.getElementById('feedback-box').classList.remove('hidden');
         }
 
@@ -155,22 +297,15 @@
                 showView('results');
                 const pct = Math.round((score / currentQuiz.length) * 100);
                 document.getElementById('res-score').innerText = pct + "%";
-                document.getElementById('res-stats').innerText = `Correct: ${score} / ${currentQuiz.length}`;
+                document.getElementById('res-stats').innerText = `${score} correct out of ${currentQuiz.length}`;
             }
-        }
-
-        function renderGuide() {
-            const body = document.getElementById('guide-body');
-            questionsData.forEach(q => {
-                body.innerHTML += `<tr><td>${q.id}</td><td>${q.topic}</td><td>${q.q}</td><td style="color:green; font-weight:bold;">${q.a}</td><td>${q.doc} (P. ${q.pg})</td></tr>`;
-            });
         }
 
         function showView(v) {
             ['home', 'quiz', 'guide', 'results'].forEach(id => document.getElementById('view-' + id).classList.add('hidden'));
             document.getElementById('view-' + v).classList.remove('hidden');
         }
-        function cancelQuiz() { if(confirm("Cancel current exam?")) showView('home'); }
+        function cancelQuiz() { if(confirm("End session?")) showView('home'); }
     </script>
 </body>
 </html>
