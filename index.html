@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Philosophy Trainer - Subtle Mode</title>
     <style>
         :root { 
@@ -37,7 +37,7 @@
             box-shadow: 0 0 15px rgba(0,0,0,0.5); 
             border: 1px solid var(--border);
             min-height: 95vh; 
-            box-sizing: border-box; /* Previene desbordamientos por padding */
+            box-sizing: border-box; 
         }
 
         h1 { color: var(--red); text-align: center; font-size: 1.5rem; letter-spacing: 1px; margin-bottom: 5px; }
@@ -50,7 +50,7 @@
         }
         .nav-bar button:hover { background: #333; color: var(--text-bright); }
 
-        .hidden { display: none !important; } /* Asegura que se oculte correctamente en móvil */
+        .hidden { display: none !important; }
 
         .config-box { 
             background: #1e1e1e; padding: 20px; border-radius: 4px; 
@@ -60,11 +60,11 @@
         select#q-limit {
             background: #111; color: var(--gold); border: 1px solid var(--border);
             padding: 8px 12px; border-radius: 3px; font-size: 1rem; outline: none;
-            width: 100%; /* Ajuste para móvil */
+            width: 100%;
             max-width: 250px;
         }
 
-        .grid-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 6px; }
+        .grid-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 8px; }
         .btn-topic { 
             background: transparent; border: 1px solid #444; color: #777; 
             padding: 10px; border-radius: 3px; font-size: 0.85rem; cursor: pointer; 
@@ -102,7 +102,7 @@
         .ref-card { 
             margin-top: 20px; padding: 15px; background: #151515; 
             border-left: 3px solid var(--gold); font-size: 0.85rem; color: #777;
-            overflow-wrap: break-word; /* Previene desbordamiento de texto largo */
+            overflow-wrap: break-word; 
         }
 
         .guide-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; color: #999; margin-top: 10px; }
@@ -113,48 +113,79 @@
 
         .score-big { font-size: 3rem; color: var(--gold); text-align: center; margin: 20px 0; }
 
-        /* --- MEDIA QUERIES PARA CELULARES --- */
+        /* --- CONFIGURACIÓN ESPECÍFICA PARA CELULARES (TEXTOS MÁS GRANDES) --- */
         @media (max-width: 600px) {
             body { 
-                padding: 0; /* Quita el padding exterior en móviles */
+                padding: 0; 
             }
             .container { 
-                padding: 15px; 
+                padding: 12px; /* Menos espacio en los bordes para usar toda la pantalla */
                 border: none; 
                 border-radius: 0;
-                min-height: 100vh;
             }
+            h1 { font-size: 2rem; } /* Título más grande */
+            .subtitle { font-size: 1rem; }
+            
             .nav-bar { 
-                flex-wrap: wrap; /* Permite que los botones colapsen en varias líneas */
+                flex-wrap: wrap; 
             }
             .nav-bar button { 
-                flex: 1 1 40%; /* Toma el 40% del espacio para hacer 2 columnas o filas agradables */
-                padding: 12px 8px; /* Área táctil más grande */
-                font-size: 0.9rem;
+                flex: 1 1 100%; /* Botones de menú ocupan toda la línea para tocarlos fácil */
+                padding: 14px 8px; 
+                font-size: 1.1rem; /* Texto de menú más grande */
             }
+            
+            h3 { font-size: 1.1rem !important; } /* Títulos de secciones "Select Topic" */
+
             .grid-topics { 
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Botones un poco más compactos */
+                grid-template-columns: 1fr 1fr; /* Exactamente 2 botones por fila en móvil */
             }
             .btn-topic {
-                padding: 12px; /* Mejor para los dedos */
-                font-size: 0.9rem;
+                padding: 14px; 
+                font-size: 1rem; /* Textos de los temas más grandes */
             }
+
+            /* --- TEXTOS DE LOS RESÚMENES (Lo principal de tu foto) --- */
+            #summary-display {
+                font-size: 1.2rem !important; /* TEXTO MUY GRANDE para leer de lejos */
+                line-height: 1.6 !important; /* Más espacio entre líneas */
+                height: 60vh !important; /* Área de scroll un poco más alta */
+                padding: 15px;
+            }
+
+            .config-box p { font-size: 1rem !important; }
+            select#q-limit {
+                font-size: 1.2rem;
+                padding: 10px;
+            }
+            .btn-main {
+                font-size: 1.2rem; /* Botón de Start más grande */
+                padding: 16px;
+                margin-top: 15px !important;
+            }
+
             .question-box {
-                font-size: 1.05rem; /* Letra de pregunta ligeramente adaptada */
+                font-size: 1.3rem; /* PREGUNTAS MUY GRANDES */
                 margin: 15px 0;
             }
             .opt-btn {
-                padding: 15px; /* Botones de respuesta más altos para tocar fácil */
-                font-size: 1rem;
+                padding: 16px; 
+                font-size: 1.15rem; /* RESPUESTAS MUY GRANDES */
             }
+            
+            #ref-content {
+                font-size: 1rem; /* Texto de corrección más grande */
+                line-height: 1.5;
+            }
+
             .guide-table { 
-                font-size: 0.75rem; 
+                font-size: 0.95rem; /* Tabla más legible */
             }
             .guide-table th, .guide-table td { 
-                padding: 8px 5px; 
+                padding: 12px 8px; 
             }
             #guide-content-area > div {
-                overflow-x: auto; /* Permite hacer scroll horizontal a la tabla en celular */
+                overflow-x: auto; 
             }
         }
     </style>
@@ -189,20 +220,21 @@
 
         <div id="view-quiz" class="hidden">
             <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span id="quiz-title" style="color:var(--gold); font-size: 0.75rem; font-weight:bold;"></span>
+                <span id="quiz-title" style="color:var(--gold); font-size: 0.9rem; font-weight:bold;"></span>
                 <button class="btn-cancel" onclick="cancelQuiz()">Close</button>
             </div>
             <div style="background:#222; height:3px; margin:15px 0;">
                 <div id="progress-fill" class="progress-fill"></div>
             </div>
-            <div id="q-counter" style="font-size:0.7rem; color:#444; margin-bottom: 5px;"></div>
+            
+            <div id="q-counter" style="font-size:0.85rem; color:#666; margin-bottom: 5px;"></div>
             
             <div class="question-box" id="q-text"></div>
             <div id="options-box"></div>
             
             <div id="feedback-box" class="hidden">
                 <div class="ref-card">
-                    <strong style="color:var(--gold); font-size: 0.7rem;">REFERENCE CHECK:</strong>
+                    <strong style="color:var(--gold); font-size: 0.85rem;">REFERENCE CHECK:</strong>
                     <div id="ref-content" style="margin-top:5px; line-height:1.4;"></div>
                 </div>
                 <button class="btn-main" style="background:var(--red); margin-top:15px; color: white;" onclick="nextQuestion()">Continue →</button>
@@ -261,9 +293,9 @@
         </div>
 
         <div id="view-results" class="hidden">
-            <h2 style="text-align:center; font-size: 1rem;">Session Complete</h2>
+            <h2 style="text-align:center; font-size: 1.5rem;">Session Complete</h2>
             <div id="res-score" class="score-big">0%</div>
-            <p id="res-stats" style="text-align:center; font-size:0.9rem; color: #555;"></p>
+            <p id="res-stats" style="text-align:center; font-size:1.1rem; color: #555;"></p>
             <button class="btn-main" onclick="showView('home')">Return Menu</button>
         </div>
     </div>
@@ -273,20 +305,17 @@
         let currentQuiz = [], currentIdx = 0, score = 0;
 
         window.onload = () => {
-            // Obtener temas únicos y ordenarlos
             const topics = [...new Set(questionsData.map(q => q.topic))].sort();
             
             const mainMenu = document.getElementById('main-topics-menu');
             const guideMenu = document.getElementById('guide-topics-menu');
 
             topics.forEach(t => {
-                // Botones del menú principal
                 const b1 = document.createElement('button');
                 b1.className = 'btn-topic'; b1.innerText = t;
                 b1.onclick = () => startQuiz(t);
                 mainMenu.appendChild(b1);
 
-                // Botones de las pestañas de la guía
                 const b2 = document.createElement('button');
                 b2.className = 'btn-topic btn-guide-tab'; b2.innerText = t;
                 b2.onclick = () => filterGuide(t, b2);
@@ -307,11 +336,11 @@
                 const typeLabel = q.type === 'TF' ? 'T/F' : 'MC';
                 body.innerHTML += `
                     <tr>
-                        <td style="font-size: 0.7rem; color: var(--gold); font-weight: bold;">${q.id}</td>
+                        <td style="font-size: 0.8rem; color: var(--gold); font-weight: bold;">${q.id}</td>
                         <td><span class="guide-type">${typeLabel}</span></td>
-                        <td style="font-size: 0.8rem;">${q.q}</td>
-                        <td style="color:#27ae60; font-weight:bold; font-size: 0.8rem;">${q.a}</td>
-                        <td style="font-size:0.7rem; color:#555;">P. ${q.pg}</td>
+                        <td style="font-size: 0.95rem;">${q.q}</td>
+                        <td style="color:#27ae60; font-weight:bold; font-size: 0.95rem;">${q.a}</td>
+                        <td style="font-size:0.8rem; color:#555;">P. ${q.pg}</td>
                     </tr>`;
             });
 
@@ -333,7 +362,6 @@
 
         function showQuestion() {
             const q = currentQuiz[currentIdx];
-            // ID mostrado sutilmente en el examen
             document.getElementById('q-counter').innerText = `Question ${currentIdx + 1}/${currentQuiz.length} (Ref ID: ${q.id})`;
             document.getElementById('q-text').innerText = q.q;
             document.getElementById('feedback-box').classList.add('hidden');
@@ -358,7 +386,6 @@
                 btn.classList.add('wrong'); 
                 btns.forEach(b => { if(b.innerText === q.a) b.classList.add('correct'); });
             }
-            // Información detallada de auditoría en el feedback
             document.getElementById('ref-content').innerHTML = `
                 <strong>Answer:</strong> ${q.a} <br> 
                 <strong>Original ID:</strong> ${q.id} <br>
@@ -382,15 +409,12 @@
             ['home', 'quiz', 'guide', 'summary', 'results'].forEach(id => document.getElementById('view-' + id).classList.add('hidden'));
             document.getElementById('view-' + v).classList.remove('hidden');
         }
+        
         function cancelQuiz() { if(confirm("End session?")) showView('home'); }
 
         function showSummary(id) {
-            // Ocultar todos los textos de resumen
             document.querySelectorAll('.summary-text').forEach(el => el.classList.add('hidden'));
-            // Mostrar solo el seleccionado
             document.getElementById(id).classList.remove('hidden');
-            
-            // Opcional: resaltar el botón activo
             document.querySelectorAll('#summary-menu .btn-topic').forEach(btn => btn.style.borderColor = '#444');
             event.target.style.borderColor = 'var(--gold)';
         }
