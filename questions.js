@@ -120,7 +120,7 @@ const questionsData = [
     { id: "MC-70", type: "MC", topic: "Mohism", q: "Who viewed elaborate celebrations and funerals as detrimental to common people?", o: ["Mò Zǐ", "Sūn Zǐ", "Mèng Zǐ"], a: "Mò Zǐ", doc: "Mohism_Ethics.pdf", pg: "70" },
     { id: "MC-71", type: "MC", topic: "Mohism", q: "Who taught that everyone is equal in the eyes of heaven?", o: ["Mèng Zǐ", "Mò Zǐ", "Sūn Zǐ"], a: "Mò Zǐ", doc: "Mohism_Ethics.pdf", pg: "71" },
     { id: "MC-72", type: "MC", topic: "Mohism", q: "Mozi's idea of \"universal love\" is called _____ in Chinese.", o: ["jie yong", "fei gong", "jian ai"], a: "jian ai", doc: "Mohism_Ethics.pdf", pg: "72" },
-    { id: "MC-73", type: "MC", topic: "Mohism", q: "Mozi was sad at dyeing silk because _____.", o: ["costly", "silk better-looking", "reminded of sad past"], a: "reminded of sad past", doc: "Mohism_Ethics.pdf", pg: "73" },
+    { id: "MC-73", type: "MC", topic: "Mohism", q: "Mozi was sad at dyeing silk because _____.", o: ["costly", "silk better-looking", "reminded of sad past"], a: "costly", doc: "Mohism_Ethics.pdf", pg: "73" },
     { id: "MC-74", type: "MC", topic: "Mohism", q: "\"When one throws to me a peach, I return to him a plum\" means _____.", o: ["tooth for tooth", "favor for favor", "mismatch"], a: "favor for favor", doc: "Mohism_Ethics.pdf", pg: "74" },
     { id: "MC-75", type: "MC", topic: "Mohism", q: "Which is NOT a contribution by Mozi?", o: ["lever principle", "light travels straight", "general relativity"], a: "general relativity", doc: "Mohism_Science.pdf", pg: "75" },
 
